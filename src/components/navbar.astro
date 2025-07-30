@@ -1,0 +1,93 @@
+---
+import icon from "../assets/ConverterIcon.png";
+---
+
+<nav class="p-4 w-full fixed top-0 z-50">
+  <div class="flex items-center justify-between mx-auto px-4">
+    <!-- Logo -->
+    <div class="flex items-center space-x-4">
+      <img src={icon.src} alt="RemooV Icon" class="h-10 w-10 spin" />
+      <p class="text-white hover:text-gray-300 font-medium">RemooVI</p>
+    </div>
+
+    <ul class="hidden md:flex space-x-4">
+      <li>
+        <a href="/" class="text-white hover:text-gray-300 font-medium">Home</a>
+      </li>
+      <li>
+        <a href="/about" class="text-white hover:text-gray-300 font-medium"
+          >About</a>
+      </li>
+      <li>
+        <a href="/services" class="text-white hover:text-gray-300 font-medium"
+          >Services</a>
+      </li>
+      <li>
+        <a href="/contact" class="text-white hover:text-gray-300 font-medium"
+          >Contact</a>
+      </li>
+    </ul>
+
+    <div class="md:hidden">
+      <button
+        id="burger"
+        class="flex flex-col justify-between w-6 h-4 text-white focus:outline-none transition-transform duration-300 ease-in-out"
+      >
+        <span
+          class="burger-line top-line block h-[2px] bg-white w-full rounded transition-all duration-300 ease-in-out"
+        ></span>
+        <span
+          class="burger-line bottom-line block h-[2px] bg-white w-full rounded transition-all duration-300 ease-in-out"
+        ></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<ul
+  id="mobileMenu"
+  class="max-h-0 overflow-hidden fixed z-40 top-16 left-0 w-full bg-gradient-to-b from-black to-gray-950 text-white transition-all duration-500 ease-in-out md:hidden"
+>
+  <li class="py-3 px-10 flex justify-center font-bold">
+    <a href="/" class="hover:text-gray-300">Home</a>
+  </li>
+  <li class="py-3 px-10 flex justify-center font-bold">
+    <a href="/about" class="hover:text-gray-300">About</a>
+  </li>
+  <li class="py-3 px-10 flex justify-center font-bold">
+    <a href="/services" class="hover:text-gray-300">Services</a>
+  </li>
+  <li class="py-3 px-10 flex justify-center font-bold">
+    <a href="/contact" class="hover:text-gray-300">Contact</a>
+  </li>
+</ul>
+
+<script type="text/javascript">
+  document.getElementById("burger").addEventListener("click", () => {
+    const menu = document.getElementById("mobileMenu");
+    const topLine = document.querySelector(".top-line");
+    const bottomLine = document.querySelector(".bottom-line");
+
+    // Mostrar u ocultar el menú
+    menu.classList.toggle("max-h-0");
+    menu.classList.toggle("max-h-96");
+
+    // Animación burger a "X"
+    topLine.classList.toggle("rotate-45");
+    topLine.classList.toggle("translate-y-[7px]");
+
+    bottomLine.classList.toggle("-rotate-45");
+    bottomLine.classList.toggle("-translate-y-[7px]");
+  });
+</script>
+
+
+<style>
+  .spin {
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>

@@ -1,0 +1,203 @@
+<section class="bg-black w-full">
+  <div class="max-w-2xl mx-auto px-5 flex flex-col items-center justify-center text-center h-screen">
+    <div id="mainContent" class="flex flex-col items-center justify-center">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center px-4">
+        Sube una imagen para eliminar el fondo
+      </h1>
+      <input id="fileInput" type="file" accept="image/*" class="hidden" />
+      <label
+        for="fileInput"
+        id="uploadButton"
+        class="cursor-pointer px-4 sm:px-6 py-2 my-4 sm:my-12 text-sm sm:text-base rounded-2xl border-2 border-white text-white font-semibold transition hover:bg-white hover:text-black hover:border-white glow-hover text-center block mx-auto"
+      >
+        Cargar imagen
+      </label>
+    </div>
+
+    <div id="loader" class="hidden mt-6">
+      <div class="loader-spinner"></div>
+      <p class="text-white mt-2">Procesando imagen...</p>
+    </div>
+
+    <div id="resultContainer" class="hidden flex-col items-center mt-6">
+      <img id="resultImage" class="rounded-lg shadow-lg max-w-full fade-in" />
+      <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
+        <a
+          id="downloadLink"
+          class="cursor-pointer px-4 sm:px-6 py-2 text-sm sm:text-base rounded-2xl border-2 border-white text-white font-semibold transition hover:bg-white hover:text-black hover:border-white glow-hover text-center hidden"
+        >
+          Descargar imagen
+        </a>
+        <label
+          for="fileInput"
+          id="anotherUploadButton"
+          class="cursor-pointer px-4 sm:px-6 py-2 text-sm sm:text-base rounded-2xl border-2 border-gray-400 text-gray-400 font-semibold transition hover:bg-gray-400 hover:text-black hover:border-gray-400 text-center hidden"
+        >
+          Cargar otra imagen
+        </label>
+      </div>
+    </div>
+
+    <p id="fileName" class="mt-4 text-white"></p>
+  </div>
+
+  <div
+    id="dropOverlay"
+    class="fixed inset-0 bg-black bg-opacity-70 text-white text-3xl flex items-center justify-center font-bold z-50 pointer-events-none opacity-0 transition-opacity duration-500"
+  >
+    Suelta aquí tu imagen
+  </div>
+</section>
+
+<script type="module">
+  const fileInput = document.getElementById("fileInput");
+  const fileNameDisplay = document.getElementById("fileName");
+  const mainContent = document.getElementById("mainContent");
+  const resultContainer = document.getElementById("resultContainer");
+  const resultImage = document.getElementById("resultImage");
+  const downloadLink = document.getElementById("downloadLink");
+  const anotherUploadButton = document.getElementById("anotherUploadButton");
+  const dropOverlay = document.getElementById("dropOverlay");
+  const loader = document.getElementById("loader");
+
+  fileInput.addEventListener("change", async function () {
+    if (fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+
+      // Ocultar UI
+      mainContent.classList.add("hidden");
+      resultContainer.classList.add("hidden");
+      fileNameDisplay.classList.remove("hidden");
+      fileNameDisplay.textContent = "";
+      loader.classList.remove("hidden");
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        const response = await fetch("http://localhost:8000/remove-bg", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) throw new Error("Error al procesar la imagen");
+
+        const blob = await response.blob();
+        const imageUrl = URL.createObjectURL(blob);
+
+        loader.classList.add("hidden");
+        fileNameDisplay.classList.add("hidden");
+        showResult(imageUrl, file.name);
+      } catch (error) {
+        loader.classList.add("hidden");
+        fileNameDisplay.textContent = "Hubo un error. Vuelve a intentarlo.";
+        mainContent.classList.remove("hidden");
+        console.error(error);
+      }
+    }
+  });
+
+  // Drag & drop
+  window.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropOverlay.classList.add("show");
+  });
+
+  window.addEventListener("dragleave", (e) => {
+    if (e.relatedTarget === null || !dropOverlay.contains(e.relatedTarget)) {
+      dropOverlay.classList.remove("show");
+    }
+  });
+
+  window.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropOverlay.classList.remove("show");
+
+    if (e.dataTransfer.files.length > 0) {
+      fileInput.files = e.dataTransfer.files;
+      fileInput.dispatchEvent(new Event("change"));
+    }
+  });
+
+  function showResult(imageUrl, fileName) {
+    // Fade-in de la imagen
+    resultImage.classList.remove("show");
+    resultImage.onload = () => {
+      resultImage.classList.add("show");
+    };
+    resultImage.src = imageUrl;
+
+    downloadLink.href = imageUrl;
+    downloadLink.download = `sin-fondo-${fileName}`;
+
+    // Ocultar elementos iniciales
+    document.querySelector("h1").classList.add("hidden");
+    document.getElementById("uploadButton").classList.add("hidden");
+
+    // Mostrar resultados
+    resultContainer.classList.remove("hidden");
+    downloadLink.classList.remove("hidden");
+    anotherUploadButton.classList.remove("hidden");
+  }
+</script>
+
+<style>
+  @keyframes colorfulGlow {
+    0% {
+      box-shadow: 0 0 0px #ff00ff;
+    }
+    25% {
+      box-shadow: 0 0 20px #00ffff, 0 0 50px #00ffff;
+    }
+    50% {
+      box-shadow: 0 0 20px #00ff00, 0 0 50px #00ff00;
+    }
+    75% {
+      box-shadow: 0 0 20px #ff9900, 0 0 50px #ff9900;
+    }
+    100% {
+      box-shadow: 0 0 20px #ff00ff, 0 0 50px #ff00ff;
+    }
+  }
+
+  .glow-hover:hover {
+    animation: colorfulGlow 1.5s infinite alternate;
+  }
+
+  #dropOverlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #mainContent,
+  #resultContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .loader-spinner {
+    border: 4px solid #ffffff;
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    animation: spin 1s linear infinite;
+    margin: auto;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .fade-in.show {
+    opacity: 1;
+  }
+</style>
