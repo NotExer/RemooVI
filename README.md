@@ -9,7 +9,7 @@
 
 Una aplicación web moderna para eliminar fondos de imágenes utilizando inteligencia artificial.
 
-[Demo](#demo) • [Características](#características) • [Instalación](#instalación) • [Uso](#uso)
+[Características](#características) • [Instalación](#instalación) • [Uso](#uso)
 
 </div>
 
@@ -89,17 +89,6 @@ El servidor estará disponible en `http://localhost:8000`
 - Espera a que la IA procese la imagen
 - Descarga el resultado sin fondo
 
-## 📁 Estructura del Proyecto
-
-```
-remoovi/
-│
-├── main.py              # Servidor FastAPI
-├── index.html           # Frontend de la aplicación
-├── requirements.txt     # Dependencias de Python
-├── README.md           # Este archivo
-└── venv/               # Entorno virtual (no incluido en git)
-```
 
 ## 🔧 API Endpoints
 
@@ -114,12 +103,6 @@ Elimina el fondo de una imagen.
 - Content-Type: `image/png`
 - Body: Imagen procesada sin fondo
 
-**Ejemplo con cURL:**
-```bash
-curl -X POST "http://localhost:8000/remove-bg" \
-  -F "file=@imagen.jpg" \
-  --output resultado.png
-```
 
 ## 🎨 Características de Diseño
 
@@ -138,10 +121,6 @@ Las contribuciones son bienvenidas. Para cambios importantes:
 3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
-
-## 📝 Licencia
-
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
 ## 👤 Autor
 
