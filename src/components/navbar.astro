@@ -2,36 +2,57 @@
 import icon from "../assets/ConverterIcon.png";
 ---
 
-<nav class="p-4 w-full fixed top-0 z-50">
-  <div class="flex items-center justify-between mx-auto px-4">
+<nav
+  class="fixed top-0 z-50 w-full border-b border-white/10 bg-black/50 backdrop-blur-xl"
+>
+  <div class="flex items-center justify-between mx-auto px-6 py-4 max-w-6xl">
     <!-- Logo -->
-    <div class="flex items-center space-x-4">
-      <img src={icon.src} alt="RemooV Icon" class="h-10 w-10 spin" />
-      <p class="text-white hover:text-gray-300 font-medium">RemooVI</p>
-    </div>
+    <a href="/" class="flex items-center space-x-3 group">
+      <div class="relative">
+        <div
+          class="absolute inset-0 bg-purple-500 blur opacity-40 group-hover:opacity-60 transition duration-300 rounded-full"
+        >
+        </div>
+        <img
+          src={icon.src}
+          alt="RemooV Icon"
+          class="h-10 w-10 relative z-10 spin"
+        />
+      </div>
+      <span
+        class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300"
+        >RemooVI</span
+      >
+    </a>
 
-    <ul class="hidden md:flex space-x-4">
+    <ul class="hidden md:flex space-x-8">
       <li>
-        <a href="/" class="text-white hover:text-gray-300 font-medium">Home</a>
+        <a
+          href="#hero"
+          class="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+          >Inicio</a
+        >
       </li>
       <li>
-        <a href="/about" class="text-white hover:text-gray-300 font-medium"
-          >About</a>
+        <a
+          href="#how-it-works"
+          class="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+          >Cómo funciona</a
+        >
       </li>
       <li>
-        <a href="/services" class="text-white hover:text-gray-300 font-medium"
-          >Services</a>
-      </li>
-      <li>
-        <a href="/contact" class="text-white hover:text-gray-300 font-medium"
-          >Contact</a>
+        <a
+          href="#features"
+          class="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+          >Características</a
+        >
       </li>
     </ul>
 
     <div class="md:hidden">
       <button
         id="burger"
-        class="flex flex-col justify-between w-6 h-4 text-white focus:outline-none transition-transform duration-300 ease-in-out"
+        class="flex flex-col justify-between w-6 h-4 text-white focus:outline-none"
       >
         <span
           class="burger-line top-line block h-[2px] bg-white w-full rounded transition-all duration-300 ease-in-out"
@@ -45,19 +66,28 @@ import icon from "../assets/ConverterIcon.png";
 </nav>
 <ul
   id="mobileMenu"
-  class="max-h-0 overflow-hidden fixed z-40 top-16 left-0 w-full bg-gradient-to-b from-black to-gray-950 text-white transition-all duration-500 ease-in-out md:hidden"
+  class="fixed z-40 top-[73px] left-0 w-full bg-black/95 backdrop-blur-xl border-b border-gray-800 text-white transition-all duration-300 ease-in-out md:hidden overflow-hidden max-h-0"
 >
-  <li class="py-3 px-10 flex justify-center font-bold">
-    <a href="/" class="hover:text-gray-300">Home</a>
+  <li class="py-4 border-b border-purple-800 bg-purple-950">
+    <a
+      href="#hero"
+      class="block text-center text-lg font-medium hover:text-purple-950"
+      >Inicio</a
+    >
   </li>
-  <li class="py-3 px-10 flex justify-center font-bold">
-    <a href="/about" class="hover:text-gray-300">About</a>
+  <li class="py-4 border-b border-purple-800 bg-purple-950">
+    <a
+      href="#how-it-works"
+      class="block text-center text-lg font-medium hover:text-purple-950"
+      >Cómo funciona</a
+    >
   </li>
-  <li class="py-3 px-10 flex justify-center font-bold">
-    <a href="/services" class="hover:text-gray-300">Services</a>
-  </li>
-  <li class="py-3 px-10 flex justify-center font-bold">
-    <a href="/contact" class="hover:text-gray-300">Contact</a>
+  <li class="py-4 border-b border-purple-800 bg-purple-950">
+    <a
+      href="#features"
+      class="block text-center text-lg font-medium hover:text-purple-950"
+      >Características</a
+    >
   </li>
 </ul>
 
@@ -80,14 +110,17 @@ import icon from "../assets/ConverterIcon.png";
   });
 </script>
 
-
 <style>
   .spin {
     animation: spin 2s linear infinite;
   }
 
   @keyframes spin {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 </style>

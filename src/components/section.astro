@@ -1,51 +1,181 @@
-<section class="bg-black w-full">
-  <div class="max-w-2xl mx-auto px-5 flex flex-col items-center justify-center text-center h-screen">
-    <div id="mainContent" class="flex flex-col items-center justify-center">
-      <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center px-4">
-        Sube una imagen para eliminar el fondo
-      </h1>
+<section
+  id="hero"
+  class="min-h-[90vh] flex flex-col items-center justify-center pt-24 pb-12 w-full relative overflow-hidden"
+>
+  <!-- Background effects -->
+  <div
+    class="absolute top-0 left-1/2 w-[1000px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 right-0 w-[800px] h-[600px] bg-blue-600/10 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none"
+  >
+  </div>
+
+  <div
+    class="max-w-4xl mx-auto px-5 flex flex-col items-center justify-center text-center relative z-10 w-full"
+  >
+    <div
+      id="mainContent"
+      class="flex flex-col items-center justify-center w-full max-w-2xl"
+    >
+      <div class="mb-8">
+        <span
+          class="px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-300 text-sm font-medium mb-6 inline-block"
+        >
+          ✨ Potenciado por IA 2.0
+        </span>
+        <h1
+          class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 text-center leading-tight tracking-tight"
+        >
+          Elimina fondos <br class="hidden sm:block" />
+          <span
+            class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600"
+          >
+            en segundos
+          </span>
+        </h1>
+        <p class="mt-6 text-lg text-gray-400 max-w-xl mx-auto">
+          Sube tu imagen y deja que nuestra inteligencia artificial haga la
+          magia. Precisión profesional, completamente gratis.
+        </p>
+      </div>
+
       <input id="fileInput" type="file" accept="image/*" class="hidden" />
       <label
         for="fileInput"
         id="uploadButton"
-        class="cursor-pointer px-4 sm:px-6 py-2 my-4 sm:my-12 text-sm sm:text-base rounded-2xl border-2 border-white text-white font-semibold transition hover:bg-white hover:text-black hover:border-white glow-hover text-center block mx-auto"
+        class="group relative cursor-pointer px-8 py-4 text-lg rounded-2xl bg-white text-black font-bold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)]"
       >
-        Cargar imagen
+        <span class="relative z-10 flex items-center space-x-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+            ></path>
+          </svg>
+          <span>Cargar imagen</span>
+        </span>
+        <div
+          class="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+        >
+        </div>
       </label>
+
+      <p class="mt-4 text-xs text-gray-500">
+        O arrastra y suelta aquí (JPG, PNG, WEBP)
+      </p>
     </div>
 
-    <div id="loader" class="hidden mt-6">
-      <div class="loader-spinner"></div>
-      <p class="text-white mt-2">Procesando imagen...</p>
+    <div
+      id="loader"
+      class="hidden flex flex-col items-center justify-center absolute inset-0 z-20"
+    >
+      <div class="relative w-16 h-16">
+        <div class="absolute inset-0 rounded-full border-4 border-gray-700">
+        </div>
+        <div
+          class="absolute inset-0 rounded-full border-4 border-t-purple-500 border-r-transparent border-b-transparent border-l-transparent animate-spin"
+        >
+        </div>
+      </div>
+      <p class="text-gray-300 mt-4 font-medium animate-pulse">
+        Procesando imagen...
+      </p>
     </div>
 
-    <div id="resultContainer" class="hidden flex-col items-center mt-6">
-      <img id="resultImage" class="rounded-lg shadow-lg max-w-full fade-in" />
-      <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
+    <div id="resultContainer" class="hidden flex-col items-center mt-8 w-full">
+      <div class="relative group w-full max-w-lg">
+        <div
+          class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"
+        >
+        </div>
+        <img
+          id="resultImage"
+          class="relative rounded-xl shadow-2xl w-full bg-[#1a1a1a] bg-checkered"
+        />
+      </div>
+
+      <div
+        class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mt-8 w-full sm:w-auto"
+      >
         <a
           id="downloadLink"
-          class="cursor-pointer px-4 sm:px-6 py-2 text-sm sm:text-base rounded-2xl border-2 border-white text-white font-semibold transition hover:bg-white hover:text-black hover:border-white glow-hover text-center hidden"
+          class="cursor-pointer flex items-center justify-center px-8 py-3 text-base rounded-xl bg-white text-black font-bold transition-all duration-300 hover:bg-gray-100 hover:scale-105 shadow-lg shadow-white/10 hidden w-full sm:w-auto"
         >
-          Descargar imagen
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+            ></path>
+          </svg>
+          Descargar HD
         </a>
         <label
           for="fileInput"
           id="anotherUploadButton"
-          class="cursor-pointer px-4 sm:px-6 py-2 text-sm sm:text-base rounded-2xl border-2 border-gray-400 text-gray-400 font-semibold transition hover:bg-gray-400 hover:text-black hover:border-gray-400 text-center hidden"
+          class="cursor-pointer flex items-center justify-center px-8 py-3 text-base rounded-xl border border-gray-700 bg-black/50 hover:bg-gray-800 text-white font-medium transition-all duration-300 hidden w-full sm:w-auto backdrop-blur-sm"
         >
-          Cargar otra imagen
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+            ></path>
+          </svg>
+          Nueva imagen
         </label>
       </div>
     </div>
 
-    <p id="fileName" class="mt-4 text-white"></p>
+    <p id="fileName" class="mt-4 text-purple-400 font-medium"></p>
   </div>
 
   <div
     id="dropOverlay"
-    class="fixed inset-0 bg-black bg-opacity-70 text-white text-3xl flex items-center justify-center font-bold z-50 pointer-events-none opacity-0 transition-opacity duration-500"
+    class="fixed inset-0 bg-purple-900/90 backdrop-blur-xl text-white flex flex-col items-center justify-center z-50 pointer-events-none opacity-0 transition-all duration-300 transform scale-95"
   >
-    Suelta aquí tu imagen
+    <div class="rounded-full bg-white/10 p-8 mb-6">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-20 w-20 animate-bounce"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+        ></path>
+      </svg>
+    </div>
+    <span class="text-4xl font-bold">Suelta tu imagen aquí</span>
+    <span class="text-purple-200 mt-2">la procesaremos al instante</span>
   </div>
 </section>
 
@@ -64,12 +194,13 @@
     if (fileInput.files.length > 0) {
       const file = fileInput.files[0];
 
-      // Ocultar UI
-      mainContent.classList.add("hidden");
+      // Reset state for new upload
+      mainContent.classList.add("hidden"); // We hide the main content (title, buttons)
       resultContainer.classList.add("hidden");
       fileNameDisplay.classList.remove("hidden");
       fileNameDisplay.textContent = "";
-      loader.classList.remove("hidden");
+      loader.classList.remove("hidden"); // Show loader in the center
+      loader.classList.add("flex"); // Ensure flex is added
 
       const formData = new FormData();
       formData.append("file", file);
@@ -85,33 +216,41 @@
         const blob = await response.blob();
         const imageUrl = URL.createObjectURL(blob);
 
+        // Success
         loader.classList.add("hidden");
+        loader.classList.remove("flex");
         fileNameDisplay.classList.add("hidden");
         showResult(imageUrl, file.name);
       } catch (error) {
+        // Error
         loader.classList.add("hidden");
+        loader.classList.remove("flex");
         fileNameDisplay.textContent = "Hubo un error. Vuelve a intentarlo.";
-        mainContent.classList.remove("hidden");
+        fileNameDisplay.className = "text-red-500 mt-4 font-bold";
+        mainContent.classList.remove("hidden"); // Show main content again
         console.error(error);
       }
     }
   });
 
-  // Drag & drop
+  // Drag & drop logic
   window.addEventListener("dragover", (e) => {
     e.preventDefault();
-    dropOverlay.classList.add("show");
+    dropOverlay.classList.remove("scale-95", "opacity-0");
+    dropOverlay.classList.add("scale-100", "opacity-100");
   });
 
   window.addEventListener("dragleave", (e) => {
     if (e.relatedTarget === null || !dropOverlay.contains(e.relatedTarget)) {
-      dropOverlay.classList.remove("show");
+      dropOverlay.classList.add("scale-95", "opacity-0");
+      dropOverlay.classList.remove("scale-100", "opacity-100");
     }
   });
 
   window.addEventListener("drop", (e) => {
     e.preventDefault();
-    dropOverlay.classList.remove("show");
+    dropOverlay.classList.add("scale-95", "opacity-0");
+    dropOverlay.classList.remove("scale-100", "opacity-100");
 
     if (e.dataTransfer.files.length > 0) {
       fileInput.files = e.dataTransfer.files;
@@ -120,84 +259,43 @@
   });
 
   function showResult(imageUrl, fileName) {
-    // Fade-in de la imagen
-    resultImage.classList.remove("show");
+    resultImage.classList.remove("opacity-100");
+    resultImage.style.opacity = "0";
+
     resultImage.onload = () => {
-      resultImage.classList.add("show");
+      resultImage.style.transition = "opacity 1s ease";
+      resultImage.style.opacity = "1";
     };
     resultImage.src = imageUrl;
 
     downloadLink.href = imageUrl;
-    downloadLink.download = `sin-fondo-${fileName}`;
+    downloadLink.download = `RemooVI-${fileName}`;
 
-    // Ocultar elementos iniciales
-    document.querySelector("h1").classList.add("hidden");
-    document.getElementById("uploadButton").classList.add("hidden");
+    // Hide input elements effectively (already done by hiding mainContent)
 
-    // Mostrar resultados
+    // Show results
     resultContainer.classList.remove("hidden");
+    resultContainer.classList.add("flex"); // Ensure flex display
     downloadLink.classList.remove("hidden");
+    downloadLink.classList.add("flex");
     anotherUploadButton.classList.remove("hidden");
+    anotherUploadButton.classList.add("flex");
   }
 </script>
 
 <style>
-  @keyframes colorfulGlow {
-    0% {
-      box-shadow: 0 0 0px #ff00ff;
-    }
-    25% {
-      box-shadow: 0 0 20px #00ffff, 0 0 50px #00ffff;
-    }
-    50% {
-      box-shadow: 0 0 20px #00ff00, 0 0 50px #00ff00;
-    }
-    75% {
-      box-shadow: 0 0 20px #ff9900, 0 0 50px #ff9900;
-    }
-    100% {
-      box-shadow: 0 0 20px #ff00ff, 0 0 50px #ff00ff;
-    }
-  }
-
-  .glow-hover:hover {
-    animation: colorfulGlow 1.5s infinite alternate;
-  }
-
-  #dropOverlay.show {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  #mainContent,
-  #resultContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .loader-spinner {
-    border: 4px solid #ffffff;
-    border-top: 4px solid transparent;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    animation: spin 1s linear infinite;
-    margin: auto;
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  .fade-in {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-  }
-
-  .fade-in.show {
-    opacity: 1;
+  .bg-checkered {
+    background-image:
+      linear-gradient(45deg, #1a1a1a 25%, transparent 25%),
+      linear-gradient(-45deg, #1a1a1a 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #1a1a1a 75%),
+      linear-gradient(-45deg, transparent 75%, #1a1a1a 75%);
+    background-size: 20px 20px;
+    background-position:
+      0 0,
+      0 10px,
+      10px -10px,
+      -10px 0px;
+    background-color: #111;
   }
 </style>

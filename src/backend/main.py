@@ -18,3 +18,7 @@ async def remove_background(file: UploadFile = File(...)):
     image_data = await file.read()
     result = remove(image_data)
     return StreamingResponse(BytesIO(result), media_type="image/png")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
