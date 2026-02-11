@@ -207,7 +207,19 @@
 
       try {
         // Use environment variable for API URL or default to relative path for Vercel
-        const API_URL = import.meta.env.PUBLIC_BACKEND_URL || "/api";
+        let API_URL = "/api";
+        try {
+          if (
+            import.meta &&
+            import.meta.env &&
+            import.meta.env.PUBLIC_BACKEND_URL
+          ) {
+            API_URL = import.meta.env.PUBLIC_BACKEND_URL;
+          }
+        } catch (e) {
+          console.log("Using default API URL");
+        }
+
         // Remove trailing slash if present to avoid double slashes
         const cleanApiUrl = API_URL.replace(/\/$/, "");
 
