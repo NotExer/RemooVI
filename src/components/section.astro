@@ -206,31 +206,17 @@
       formData.append("file", file);
 
       try {
-        // Use environment variable for API URL or default to relative path for Vercel
-        let API_URL = "/api";
-        try {
-          if (
-            import.meta &&
-            import.meta.env &&
-            import.meta.env.PUBLIC_BACKEND_URL
-          ) {
-            API_URL = import.meta.env.PUBLIC_BACKEND_URL;
-          }
-        } catch (e) {
-          console.log("Using default API URL");
-        }
+        // Dynamic import to avoid SSR issues
+        const { removeBackground } = await import("@imgly/background-removal");
 
-        // Remove trailing slash if present to avoid double slashes
-        const cleanApiUrl = API_URL.replace(/\/$/, "");
-
-        const response = await fetch(`${cleanApiUrl}/remove-bg`, {
-          method: "POST",
-          body: formData,
+        // Process directly in browser
+        const blob = await removeBackground(file, {
+          progress: (key, current, total) => {
+            // Optional: Update simplified progress if needed
+            // console.log(`Downloading ${key}: ${current} of ${total}`);
+          },
         });
 
-        if (!response.ok) throw new Error("Error al procesar la imagen");
-
-        const blob = await response.blob();
         const imageUrl = URL.createObjectURL(blob);
 
         // Success
@@ -242,7 +228,7 @@
         // Error
         loader.classList.add("hidden");
         loader.classList.remove("flex");
-        fileNameDisplay.textContent = "Hubo un error. Vuelve a intentarlo.";
+        fileNameDisplay.textContent = "Hubo un error al procesar la imagen.";
         fileNameDisplay.className = "text-red-500 mt-4 font-bold";
         mainContent.classList.remove("hidden"); // Show main content again
         console.error(error);
