@@ -1,8 +1,4 @@
-api/
 src/backend/
-requirements.txt
-runtime.txt
 Dockerfile
-**/*.py
 **/*.pyc
 __pycache__/
