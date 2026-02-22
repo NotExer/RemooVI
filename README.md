@@ -131,12 +131,4 @@ Las contribuciones son bienvenidas. Para cambios importantes:
 
 **NotExer**
 - GitHub: [@NotExer](https://github.com/NotExer)
-- LinkedIn: [Samuel Gomez](https://linkedin.com/in/samuel-gomez-restrepo-717238191/)
-
----
-
-<div align="center">
-  
-Hecho con ❤️ para la comunidad
-
-</div>
+- LinkedIn: [Samuel Gomez](https://www.linkedin.com/in/notexer/)
