@@ -14,6 +14,11 @@ Una aplicación web moderna para eliminar fondos de imágenes utilizando intelig
 </div>
 
 ---
+## 📺 Preview
+
+> **🌐 Visita el sitio:** > [https://remoovi.vercel.app](https://remoovi.vercel.app)
+
+
 
 ## 📋 Descripción
 
