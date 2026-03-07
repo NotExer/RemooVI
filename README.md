@@ -95,7 +95,7 @@ El servidor estará disponible en `http://localhost:8000`
 - Descarga el resultado sin fondo
 
 
-## 🔧 API Endpoints
+## API Endpoints
 
 ### POST `/remove-bg`
 Elimina el fondo de una imagen.
