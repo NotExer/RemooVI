@@ -11,18 +11,18 @@
     >
       <div class="mb-10">
         <span
-          class="px-4 py-1.5 rounded-full border border-[#d2d2d7] bg-[#f5f5f7] text-[#6e6e73] text-xs font-medium mb-6 inline-block tracking-wide uppercase"
+          class="px-4 py-1.5 rounded-full border border-[#38383a] bg-[#1c1c1e] text-[#a1a1a6] text-xs font-medium mb-6 inline-block tracking-wide uppercase"
         >
           Potenciado por IA
         </span>
         <h1
-          class="text-4xl sm:text-5xl md:text-7xl font-semibold text-[#1d1d1f] text-center leading-tight tracking-tight"
+          class="text-4xl sm:text-5xl md:text-7xl font-semibold text-[#f5f5f7] text-center leading-tight tracking-tight"
         >
           Elimina fondos
           <br class="hidden sm:block" />
           en segundos.
         </h1>
-        <p class="mt-6 text-lg text-[#6e6e73] max-w-xl mx-auto leading-relaxed">
+        <p class="mt-6 text-lg text-[#a1a1a6] max-w-xl mx-auto leading-relaxed">
           Sube tu imagen y deja que la inteligencia artificial haga el trabajo.
           Precision profesional, completamente gratis.
         </p>
@@ -32,7 +32,7 @@
       <label
         for="fileInput"
         id="uploadButton"
-        class="group relative cursor-pointer px-8 py-4 text-base rounded-full bg-[#0071e3] text-white font-medium transition-all duration-300 hover:bg-[#0077ed] hover:scale-[1.02] active:scale-[0.98]"
+        class="group relative cursor-pointer px-8 py-4 text-base rounded-full bg-[#0a84ff] text-white font-medium transition-all duration-300 hover:bg-[#409cff] hover:scale-[1.02] active:scale-[0.98]"
       >
         <span class="relative z-10 flex items-center space-x-2">
           <svg
@@ -53,7 +53,7 @@
         </span>
       </label>
 
-      <p class="mt-4 text-xs text-[#86868b]">
+      <p class="mt-4 text-xs text-[#6e6e73]">
         O arrastra y suelta aqui -- JPG, PNG, WEBP
       </p>
     </div>
@@ -63,14 +63,14 @@
       class="hidden flex flex-col items-center justify-center absolute inset-0 z-20"
     >
       <div class="relative w-12 h-12">
-        <div class="absolute inset-0 rounded-full border-2 border-[#d2d2d7]">
+        <div class="absolute inset-0 rounded-full border-2 border-[#38383a]">
         </div>
         <div
-          class="absolute inset-0 rounded-full border-2 border-t-[#0071e3] border-r-transparent border-b-transparent border-l-transparent animate-spin"
+          class="absolute inset-0 rounded-full border-2 border-t-[#0a84ff] border-r-transparent border-b-transparent border-l-transparent animate-spin"
         >
         </div>
       </div>
-      <p class="text-[#6e6e73] mt-4 text-sm font-medium animate-pulse">
+      <p class="text-[#a1a1a6] mt-4 text-sm font-medium animate-pulse">
         Procesando imagen...
       </p>
     </div>
@@ -88,7 +88,7 @@
       >
         <a
           id="downloadLink"
-          class="cursor-pointer flex items-center justify-center px-8 py-3 text-sm rounded-full bg-[#0071e3] text-white font-medium transition-all duration-300 hover:bg-[#0077ed] hover:scale-[1.02] active:scale-[0.98] hidden w-full sm:w-auto"
+          class="cursor-pointer flex items-center justify-center px-8 py-3 text-sm rounded-full bg-[#0a84ff] text-white font-medium transition-all duration-300 hover:bg-[#409cff] hover:scale-[1.02] active:scale-[0.98] hidden w-full sm:w-auto"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +109,7 @@
         <label
           for="fileInput"
           id="anotherUploadButton"
-          class="cursor-pointer flex items-center justify-center px-8 py-3 text-sm rounded-full border border-[#d2d2d7] bg-white hover:bg-[#f5f5f7] text-[#1d1d1f] font-medium transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hidden w-full sm:w-auto"
+          class="cursor-pointer flex items-center justify-center px-8 py-3 text-sm rounded-full border border-[#38383a] bg-[#1c1c1e] hover:bg-[#2c2c2e] text-[#f5f5f7] font-medium transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hidden w-full sm:w-auto"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -130,17 +130,17 @@
       </div>
     </div>
 
-    <p id="fileName" class="mt-4 text-[#0071e3] text-sm font-medium"></p>
+    <p id="fileName" class="mt-4 text-[#0a84ff] text-sm font-medium"></p>
   </div>
 
   <div
     id="dropOverlay"
-    class="fixed inset-0 bg-white/95 backdrop-blur-xl flex flex-col items-center justify-center z-50 pointer-events-none opacity-0 transition-all duration-300 transform scale-95"
+    class="fixed inset-0 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center z-50 pointer-events-none opacity-0 transition-all duration-300 transform scale-95"
   >
-    <div class="rounded-full bg-[#f5f5f7] p-8 mb-6">
+    <div class="rounded-full bg-[#1c1c1e] p-8 mb-6">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-16 w-16 text-[#0071e3] animate-bounce"
+        class="h-16 w-16 text-[#0a84ff] animate-bounce"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -153,8 +153,8 @@
         ></path>
       </svg>
     </div>
-    <span class="text-3xl font-semibold text-[#1d1d1f]">Suelta tu imagen aqui</span>
-    <span class="text-[#6e6e73] mt-2 text-base">La procesaremos al instante</span>
+    <span class="text-3xl font-semibold text-[#f5f5f7]">Suelta tu imagen aqui</span>
+    <span class="text-[#a1a1a6] mt-2 text-base">La procesaremos al instante</span>
   </div>
 </section>
 
@@ -257,16 +257,16 @@
 <style>
   .bg-checkered {
     background-image:
-      linear-gradient(45deg, #e5e5e5 25%, transparent 25%),
-      linear-gradient(-45deg, #e5e5e5 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #e5e5e5 75%),
-      linear-gradient(-45deg, transparent 75%, #e5e5e5 75%);
+      linear-gradient(45deg, #2c2c2e 25%, transparent 25%),
+      linear-gradient(-45deg, #2c2c2e 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #2c2c2e 75%),
+      linear-gradient(-45deg, transparent 75%, #2c2c2e 75%);
     background-size: 20px 20px;
     background-position:
       0 0,
       0 10px,
       10px -10px,
       -10px 0px;
-    background-color: #f5f5f7;
+    background-color: #1c1c1e;
   }
 </style>
